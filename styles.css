@@ -80,3 +80,28 @@
 .modal-photo-wrap>span{position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,.92);padding:9px 11px;font-size:8px;letter-spacing:.14em;text-transform:uppercase}
 @media(max-width:900px){.modal-board{grid-template-columns:1fr}.modal-photo-wrap,.modal-photo-wrap img{min-height:380px;height:380px}}
 @media(max-width:560px){.photographic-board .board-photo-wrap{height:350px}.modal-photo-wrap,.modal-photo-wrap img{min-height:300px;height:300px}}
+
+
+/* Final mood-board correction: one image only per board. No paper, collage, swatches, stamps or secondary imagery. */
+.boards-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:54px 28px}
+.photographic-board{background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important}
+.photographic-board .physical-board,.photographic-board .board-paper,.photographic-board .board-stamp,.photographic-board .board-paper-top,.photographic-board .swatch-row,.photographic-board .material-labels{display:none!important}
+.board-single-image{height:420px;position:relative;overflow:hidden;background:#e8e4db}
+.board-single-image .board-photo{width:100%;height:100%;display:block;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.photographic-board:hover .board-single-image .board-photo{transform:scale(1.025)}
+.board-open{position:absolute;right:14px;bottom:14px;background:rgba(255,255,255,.94);padding:8px 10px;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#39352f;opacity:0;transform:translateY(5px);transition:.35s}
+.photographic-board:hover .board-open,.photographic-board:focus-visible .board-open{opacity:1;transform:none}
+.board-meta-single{padding:19px 0 0}
+.board-meta-single h3{font-family:var(--serif);font-size:30px;line-height:1.05;font-weight:500;margin:0 0 8px}
+.board-meta-single p{font-size:12px;line-height:1.6;color:var(--gray);max-width:520px;margin:0 0 9px}
+.board-palette-text{font-size:9px;line-height:1.5;text-transform:uppercase;letter-spacing:.12em;color:#7a7267}
+.modal-board{display:grid;grid-template-columns:1fr;gap:18px}
+.modal-board .visual{display:block;background:transparent;padding:0}
+.modal-board .side{display:none!important}
+.modal-photo-wrap{min-height:0!important;background:#e8e4db}
+.modal-photo-wrap img{width:100%;height:min(64vh,680px)!important;min-height:0!important;object-fit:cover;display:block}
+.modal-board-copy{padding:2px 4px 12px}
+.modal-palette-text{font-size:11px;line-height:1.6;color:var(--gray);margin:0!important}
+.modal-palette-text strong{font-size:8px;text-transform:uppercase;letter-spacing:.14em;color:#7a7267}
+@media(max-width:900px){.boards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.board-single-image{height:360px}}
+@media(max-width:560px){.boards-grid{grid-template-columns:1fr;gap:42px}.board-single-image{height:390px}.modal-photo-wrap img{height:52vh!important}}

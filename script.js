@@ -31,9 +31,7 @@ filters.forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.portfolio-card').forEach(card=>card.classList.toggle('hidden',f!=='all' && !card.dataset.category.split(' ').includes(f)));
 }));
 
-// Mood / sample boards — one distinct material image per board.
-// The imagery follows the supplied benchmark: tactile flat-lays, sample arrangements,
-// colour studies and close-up materials rather than finished-room galleries.
+// Mood / sample boards — one image per board, with metadata matched to the image's actual visual language.
 const moodImages=[
  'https://images.unsplash.com/photo-1781859240244-61e274c2bf39?auto=format&fit=crop&fm=jpg&q=90&w=1800',
  'https://images.unsplash.com/photo-1752321532730-ed24a51e7b3f?auto=format&fit=crop&fm=jpg&q=90&w=1800',
@@ -52,44 +50,38 @@ const moodImages=[
  'https://images.unsplash.com/photo-1785136055019-69e1e933458c?auto=format&fit=crop&fm=jpg&q=90&w=1800'
 ];
 const boards=[
- ['Soft Neutral Luxury','A quiet arrangement of warm ivory, pale stone, natural wood and soft organic detail for calm residential interiors.',['#f2eee5','#d8cbb9','#a8957f','#6e6255'],0,'Ivory','Natural oak','Warm stone','Soft taupe'],
- ['Natural Timber','Layered timber tones and tactile grain create a grounded material language suited to cabinetry, wall features and bespoke joinery.',['#d2a878','#9a6942','#67432f','#33251d'],1,'Pale oak','Walnut','Timber grain','Deep wood'],
- ['Colour & Material','A composed colour study where repeated hues across timber, stone and metal create a deliberate, architectural palette.',['#8e6d93','#b39a8e','#4e5c4d','#c9b7a7'],2,'Tinted stone','Paint tone','Metal accent','Textured surface'],
- ['Cape Coastal Blue','Cool blue material accents balanced by pale stone and reflective finishes create a restrained Atlantic-inspired scheme.',['#dfe5e4','#829aa2','#4d6872','#c8b79e'],3,'Sea-glass blue','Pale stone','Smoked metal','Sand tone'],
- ['Monochrome Texture','Graphic texture, dark-and-light contrast and subtle surface variation create an understated architectural monochrome.',['#eeeae3','#b9b5ae','#68645e','#292826'],4,'Ivory surface','Grey stone','Graphite metal','Charcoal textile'],
- ['Wood & Stone','Warm timber and stone sit together in a tactile natural composition suited to refined contemporary interiors.',['#c8a887','#947052','#665346','#d8cdbb'],5,'Natural timber','Stone','Walnut','Warm neutral'],
- ['Material Colour Study','A balanced sample arrangement where colour, reflection and material finish are treated as one interior palette.',['#e1d9cc','#8d9e9a','#4f6868','#b5a783'],6,'Mineral tone','Sea green','Reflective metal','Natural stone'],
- ['Cognac Leather','Rich brown leather grain introduces depth, warmth and a tailored feel for lounges, studies and executive spaces.',['#6f402a','#8f5a3b','#b5835d','#30221c'],7,'Cognac leather','Dark timber','Tan hide','Espresso'],
- ['Soft Earth','A plush warm-brown texture creates a tactile base for relaxed residential spaces and softly layered upholstery.',['#8b6c57','#6b4f40','#b0967f','#d3c0ac'],8,'Warm fabric','Mocha','Taupe','Natural fibre'],
- ['Quiet Grey','Wavy grey textile texture gives a soft architectural rhythm for bedrooms, lounges and contemporary workspaces.',['#e2dfda','#b8b5b0','#817e79','#4b4946'],9,'Silver grey','Stone grey','Graphite','Soft charcoal'],
- ['Warm Minimalism','A restrained beige surface provides a calm foundation for light timber, limestone, linen and understated metal.',['#e9e0d2','#d1c0a8','#aa947a','#6d5d4c'],10,'Warm ivory','Sand','Linen','Natural clay'],
- ['Natural Fibre','Woven texture brings craft and warmth into the palette, pairing naturally with oak, stone and muted earthy tones.',['#d4b995','#a9845e','#765a42','#40372f'],11,'Woven fibre','Natural oak','Cane','Earth brown'],
- ['Modern African Earth','Weathered organic texture in grey and terracotta creates a grounded material direction with strong natural character.',['#8b8278','#a85f42','#6e4d3d','#c2aa93'],12,'Weathered timber','Terracotta','Stone grey','Clay'],
- ['Crafted Natural','Cane texture introduces handmade warmth and pattern, balanced by earthy neutrals for contemporary residential spaces.',['#c99f73','#9b704d','#5e4b3d','#8a7880'],13,'Cane','Natural fibre','Walnut','Muted accent'],
- ['Architectural Mineral','A pale mineral surface establishes a clean architectural base for concrete, stone, timber and minimal contemporary detailing.',['#e4e0d8','#c7c1b6','#969087','#5f5b54'],14,'Mineral surface','Light concrete','Warm grey','Stone']
+ ['Neutral Material Study','Warm ivory, pale beige, natural timber and muted green form a calm, tactile foundation for contemporary residential interiors.','Ivory · Oat · Natural timber · Muted sage',0],
+ ['Timber & Warm Grain','Natural wood grain and warm brown surfaces create a grounded, crafted direction with a quiet architectural character.','Honey oak · Walnut · Caramel · Deep brown',1],
+ ['Colour Material Study','A composed study of coloured surfaces and reflective details, balancing muted green with dusty mauve and mineral neutrals.','Sage · Dusty mauve · Mineral grey · Soft beige',2],
+ ['Atlantic Blue','Cool blue material notes meet pale stone and restrained metallic detail, creating a refined coastal direction without feeling nautical.','Sea blue · Mist · Pale stone · Smoked grey',3],
+ ['Monochrome Texture','Layered grey, charcoal and off-white textures create a restrained, graphic material language for sophisticated modern interiors.','Chalk · Warm grey · Graphite · Charcoal',4],
+ ['Wood & Stone','Earthy timber, stone and warm neutral surfaces create a tactile palette suited to contemporary residential architecture.','Sandstone · Oak · Walnut · Earth brown',5],
+ ['Mineral Green','Soft mineral greens and reflective neutral surfaces bring a fresh, sophisticated material direction with subtle contrast.','Eucalyptus · Mineral grey · Moss · Warm white',6],
+ ['Cognac & Espresso','Rich leather-like browns and deep timber tones create a tailored, intimate palette appropriate to studies, lounges and executive spaces.','Cognac · Chestnut · Espresso · Tan',7],
+ ['Earth & Clay','Warm clay, mocha and natural fibre tones create an organic, grounded scheme with a softly layered tactile quality.','Clay · Mocha · Sand · Natural fibre',8],
+ ['Quiet Grey','Cool grey texture with soft tonal variation creates a calm, understated foundation for bedrooms, lounges and contemporary workspaces.','Silver grey · Pebble · Smoke · Charcoal',9],
+ ['Warm Ivory','Cream, sand and light natural finishes create an understated luxury palette designed to keep interiors bright, warm and timeless.','Cream · Sand · Linen · Light taupe',10],
+ ['Natural Fibre','Woven texture, timber and earthy neutrals create a relaxed material direction with visible craft and natural variation.','Wheat · Honey · Cane · Umber',11],
+ ['Earth & Terracotta','Weathered neutrals paired with terracotta create a warmer, more expressive material direction with an African-earth character.','Stone grey · Terracotta · Clay · Warm beige',12],
+ ['Cane & Natural Wood','Natural cane and timber textures bring pattern and warmth together in a restrained contemporary scheme.','Cane · Oak · Walnut · Soft taupe',13],
+ ['Architectural Mineral','Pale mineral, concrete and stone tones create a clean architectural base for contemporary detailing and restrained luxury.','Limestone · Concrete · Greige · Stone',14]
 ];
 function boardImage(i){return moodImages[i]}
 function renderBoards(){
  const grid=document.querySelector('#boardsGrid');if(!grid)return;
- grid.innerHTML=boards.map((b,i)=>{const [title,desc,pal,img,mat1,mat2,mat3,mat4]=b;return `<article class="board-card photographic-board reveal delay-${(i%3)+1}" tabindex="0" data-board="${i}">
-   <div class="physical-board">
-     <div class="board-photo-wrap"><img class="board-photo" src="${boardImage(img)}" alt="${title}: interior-design material and texture study" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="board-stamp">ARMANI / MATERIAL BOARD</span></div>
-     <div class="board-paper">
-       <div class="board-paper-top"><span>ARMANI INTERIORS</span><span>Material Board</span></div>
-       <h3>${title}</h3><p>${desc}</p>
-       <div class="swatch-row">${pal.map(x=>`<span style="background:${x}"></span>`).join('')}</div>
-       <div class="material-labels"><span>${mat1}</span><span>${mat2}</span><span>${mat3}</span><span>${mat4}</span></div>
-     </div>
-   </div>
+ grid.innerHTML=boards.map((b,i)=>{const [title,desc,palette,img]=b;return `<article class="board-card photographic-board reveal delay-${(i%3)+1}" tabindex="0" data-board="${i}">
+   <div class="board-single-image"><img class="board-photo" src="${boardImage(img)}" alt="${title}: interior design material study" loading="lazy"><span class="board-open">View board</span></div>
+   <div class="board-meta-single"><h3>${title}</h3><p>${desc}</p><div class="board-palette-text">${palette}</div></div>
  </article>`}).join('');
- grid.querySelectorAll('.board-card').forEach(card=>{card.addEventListener('click',()=>openBoard(+card.dataset.board));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ') {e.preventDefault();openBoard(+card.dataset.board)}})});
+ grid.querySelectorAll('.board-card').forEach(card=>{card.addEventListener('click',()=>openBoard(+card.dataset.board));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openBoard(+card.dataset.board)}})});
  grid.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 }
 function openBoard(i){
  const b=boards[i]; const modal=document.querySelector('#boardModal');if(!modal)return;
- modal.querySelector('.modal-title').textContent=b[0];modal.querySelector('.modal-desc').textContent=b[1];
- modal.querySelector('.modal-visual').innerHTML=`<div class="modal-photo-wrap"><img src="${boardImage(b[3])}" alt="${b[0]} material board" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span>ARMANI / MATERIAL BOARD</span></div>`;
- modal.querySelector('.modal-palette').innerHTML=b[2].map((x,j)=>`<div class="material"><span style="display:block;width:100%;height:42px;background:${x};margin-bottom:9px"></span><strong>${['Base','Secondary','Depth','Accent'][j]}</strong><span>${x.toUpperCase()}</span></div>`).join('');
+ modal.querySelector('.modal-title').textContent=b[0];
+ modal.querySelector('.modal-desc').textContent=b[1];
+ modal.querySelector('.modal-visual').innerHTML=`<div class="modal-photo-wrap"><img src="${boardImage(b[3])}" alt="${b[0]} material study"></div>`;
+ modal.querySelector('.modal-palette').innerHTML=`<p class="modal-palette-text"><strong>Palette</strong><br>${b[2]}</p>`;
  modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
 }
 function closeBoard(){const m=document.querySelector('#boardModal');if(!m)return;m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.style.overflow=''}
