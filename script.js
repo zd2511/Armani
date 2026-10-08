@@ -31,51 +31,57 @@ filters.forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.portfolio-card').forEach(card=>card.classList.toggle('hidden',f!=='all' && !card.dataset.category.split(' ').includes(f)));
 }));
 
-// Mood / sample board data — built around actual material, finish and swatch imagery.
-// The imagery follows the professional sample-board approach: physical materials, swatches,
-// textures, finish samples and curated palettes rather than finished-room photography.
+// Mood / sample boards — photographic material compositions, not room-photo galleries.
+// Sources deliberately follow the supplied visual benchmark: tactile flat-lays of samples,
+// timber, stone, fabric, colour and small styling objects.
 const moodImages=[
- 'https://images.unsplash.com/photo-1752321532730-ed24a51e7b3f?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=90&w=1800',
- 'https://images.unsplash.com/photo-1752321531522-20d9c4dc2e0b?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=90&w=1800',
- 'https://images.unsplash.com/photo-1752321531154-09b1d4307e65?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=90&w=1800',
- 'https://images.unsplash.com/photo-1752321531399-1e2b66043b52?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=90&w=1800',
- 'https://images.unsplash.com/photo-1752321532656-43e714c3deba?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=90&w=1800',
- 'https://images.unsplash.com/photo-1770970831074-6e88b6cc260b?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=90&w=1800',
- 'https://images.unsplash.com/photo-1761682719790-4e0b38ed5beb?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=90&w=1800',
- 'https://images.unsplash.com/photo-1776754373094-a22dc3a10398?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=90&w=1800',
- 'assets/IMG-20261007-WA0001.jpg',
- 'assets/IMG-20261007-WA0008.jpg'
+ 'https://images.unsplash.com/photo-1752321532730-ed24a51e7b3f?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=92&w=1800',
+ 'https://images.unsplash.com/photo-1752321531522-20d9c4dc2e0b?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=92&w=1800',
+ 'https://images.unsplash.com/photo-1752321531154-09b1d4307e65?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=92&w=1800',
+ 'https://images.unsplash.com/photo-1752321531399-1e2b66043b52?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=92&w=1800',
+ 'https://images.unsplash.com/photo-1781859240244-61e274c2bf39?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=92&w=1800',
+ 'https://images.unsplash.com/photo-1752321532656-43e714c3deba?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=92&w=1800'
 ];
 const boards=[
- ['Contemporary Luxury','Blackened timber, stone, bronze and champagne metallics.',['#252321','#716452','#c8a45d','#e7dfd1'],0,4,'Walnut · Stone · Bronze · Champagne gold'],
- ['Warm Minimalism','Linen, pale oak, warm stone and restrained matte finishes.',['#eee8dc','#cdbca7','#927c65','#514a42'],1,5,'Oak · Linen · Limestone · Matte metal'],
- ['Modern African Luxury','Earth pigments, dark timber, stone and tactile woven surfaces.',['#b79a78','#705744','#2d2925','#c7a15d'],2,6,'Earth pigment · Dark oak · Stone · Brass'],
- ['Coastal Contemporary','Mineral neutrals, pale timber, sea-glass blue and brushed metal.',['#f1eee6','#d7cbb9','#83959a','#bca06c'],3,5,'Ash · Limestone · Sea-glass · Brushed metal'],
- ['Monochrome Sophistication','Graphite, ivory, black timber and layered tactile surfaces.',['#f3f0e9','#aaa69e','#403d39','#151514'],4,0,'Graphite · Ivory · Black oak · Stone'],
- ['Earthy Modern','Clay, olive, walnut and natural stone for grounded contemporary spaces.',['#d8c8b4','#8d806b','#5d5145','#aa8b64'],5,2,'Clay · Olive · Walnut · Travertine'],
- ['Soft Neutral Luxury','Cream, taupe, boucle-like textures and quiet champagne accents.',['#f0ece4','#d5c8b8','#aa9985','#c6a15e'],6,1,'Cream · Taupe · Textile · Champagne'],
- ['Executive Workspace','Dark timber, stone, bronze and deep neutral upholstery.',['#252421','#594d40','#92785f','#c5a267'],7,4,'Walnut · Stone · Bronze · Charcoal'],
- ['Modern Corporate','Clean mineral surfaces, structured timber and controlled accent metal.',['#eeece6','#b9b6ae','#77736b','#bda36e'],8,5,'Ash · Stone · Steel · Bronze'],
- ['Dark Luxury','Charcoal, dramatic stone, smoked timber and warm metallic detail.',['#171716','#39332e','#76604d','#d0a85f'],9,0,'Smoked oak · Stone · Bronze · Gold'],
- ['Marble & Gold','Veined stone, black timber and metallic gold with refined tactile layers.',['#f5f1e7','#bdb4a4','#5a5148','#c8a258'],0,3,'Marble · Black oak · Gold · Stone'],
- ['Natural Textures','Timber grain, woven fibre, mineral texture and low-sheen surfaces.',['#dfd3c1','#b39b7f','#796b5c','#423d36'],1,7,'Timber · Fibre · Plaster · Stone'],
- ['Cape Town Coastal','Sand, weathered timber, mineral blue and warm stone.',['#f3efe7','#d6c9b8','#87979a','#af8f66'],2,5,'Sandstone · Oak · Mineral blue · Bronze'],
- ['Contemporary Hospitality','Rich timber, tactile textiles, stone and intimate metallic accents.',['#e0d1c0','#745e4d','#302c29','#c4a064'],3,6,'Stone · Walnut · Textile · Bronze'],
- ['Modern Residential Elegance','Fluted timber, warm stone, neutral textiles and soft metallic detail.',['#ebe7df','#c5b7a7','#6d6256','#bd9b63'],4,7,'Fluted oak · Limestone · Textile · Brass']
+ ['Contemporary Luxury','A restrained composition of dark timber, veined stone, brushed metal and warm champagne accents.',['#252321','#716452','#c8a45d','#e7dfd1'],0,'Walnut','Travertine','Brushed bronze','Champagne textile'],
+ ['Warm Minimalism','Pale oak, linen, mineral stone and softly textured neutrals create a quiet, tactile palette.',['#eee8dc','#cdbca7','#927c65','#514a42'],1,'Pale oak','Limestone','Linen','Matte taupe'],
+ ['Modern African Luxury','Earth pigments, carved timber, stone and woven texture create depth without visual clutter.',['#b79a78','#705744','#2d2925','#c7a15d'],2,'Dark oak','Earth stone','Woven fibre','Antique brass'],
+ ['Coastal Contemporary','Sand, weathered timber, mineral blue and pale stone translate Cape Town coastal light indoors.',['#f1eee6','#d7cbb9','#83959a','#bca06c'],3,'Weathered oak','Sandstone','Sea-glass blue','Brushed metal'],
+ ['Monochrome Sophistication','Ivory, graphite, black timber and tactile surfaces create an architectural monochrome scheme.',['#f3f0e9','#aaa69e','#403d39','#151514'],4,'Black oak','Ivory stone','Graphite textile','Dark metal'],
+ ['Earthy Modern','Clay, olive, walnut and natural stone build a grounded contemporary material story.',['#d8c8b4','#8d806b','#5d5145','#aa8b64'],5,'Walnut','Travertine','Olive textile','Clay plaster'],
+ ['Soft Neutral Luxury','Cream, taupe, tactile fabric and quiet metallic detail create a calm residential direction.',['#f0ece4','#d5c8b8','#aa9985','#c6a15e'],0,'Natural oak','Cream stone','Bouclé texture','Champagne metal'],
+ ['Executive Workspace','Dark timber, stone, bronze and tailored upholstery form a confident boardroom palette.',['#252421','#594d40','#92785f','#c5a267'],1,'Walnut veneer','Dark stone','Bronze','Charcoal textile'],
+ ['Modern Corporate','Mineral surfaces, structured timber and controlled metal accents keep the workspace precise.',['#eeece6','#b9b6ae','#77736b','#bda36e'],2,'Ash timber','Mineral stone','Steel','Warm bronze'],
+ ['Dark Luxury','Charcoal, smoked timber, dramatic stone and warm metallics create a cinematic direction.',['#171716','#39332e','#76604d','#d0a85f'],3,'Smoked oak','Veined stone','Charcoal fabric','Aged brass'],
+ ['Marble & Gold','Veined marble, black timber and metallic gold are balanced with soft tactile neutrals.',['#f5f1e7','#bdb4a4','#5a5148','#c8a258'],4,'Black oak','Marble','Champagne gold','Ivory textile'],
+ ['Natural Textures','Timber grain, woven fibre, mineral texture and low-sheen surfaces keep the palette organic.',['#dfd3c1','#b39b7f','#796b5c','#423d36'],5,'Natural timber','Limestone','Woven fibre','Mineral plaster'],
+ ['Cape Town Coastal','Warm sand, pale timber, mineral blue and stone echo a sophisticated Atlantic palette.',['#f3efe7','#d6c9b8','#87979a','#af8f66'],0,'Pale oak','Shell limestone','Ocean blue','Brushed brass'],
+ ['Contemporary Hospitality','Rich timber, tactile textile, stone and intimate metallic detail create a layered hospitality feel.',['#e0d1c0','#745e4d','#302c29','#c4a064'],1,'Walnut','Warm stone','Textured textile','Soft bronze'],
+ ['Modern Residential Elegance','Fluted timber, warm stone, neutral textile and soft metallic detail create a polished home direction.',['#ebe7df','#c5b7a7','#6d6256','#bd9b63'],2,'Fluted oak','Limestone','Natural textile','Soft brass']
 ];
 function boardImage(i){return moodImages[i % moodImages.length]}
 function renderBoards(){
  const grid=document.querySelector('#boardsGrid');if(!grid)return;
- grid.innerHTML=boards.map((b,i)=>{const [title,desc,pal,a,c,mat]=b;return `<article class="board-card reveal delay-${(i%3)+1}" tabindex="0" data-board="${i}"><div class="board-art sample-art"><img class="a" src="${boardImage(a)}" alt="${title} material and finish sample board" loading="lazy"><img class="b" src="${boardImage(c)}" alt="${title} supporting material sample" loading="lazy"><div class="sample-strip">${pal.slice(0,3).map((x,j)=>`<span style="background:${x}" aria-label="Colour sample ${j+1}"></span>`).join('')}</div></div><div class="board-meta"><div class="eyebrow">Material / Finish Board</div><h3>${title}</h3><p>${desc}</p><div class="board-palette">${pal.map(x=>`<span style="background:${x}"></span>`).join('')}</div></div></article>`}).join('');
+ grid.innerHTML=boards.map((b,i)=>{const [title,desc,pal,img,mat1,mat2,mat3,mat4]=b;return `<article class="board-card photographic-board reveal delay-${(i%3)+1}" tabindex="0" data-board="${i}">
+   <div class="physical-board">
+     <div class="board-photo-wrap"><img class="board-photo" src="${boardImage(img)}" alt="${title}: photographed interior-design material sample composition" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="board-stamp">ARMANI / MATERIAL STUDY</span></div>
+     <div class="board-paper">
+       <div class="board-paper-top"><span>ARMANI INTERIORS</span><span>Material Study ${String(i+1).padStart(2,'0')}</span></div>
+       <h3>${title}</h3><p>${desc}</p>
+       <div class="swatch-row">${pal.map(x=>`<span style="background:${x}"></span>`).join('')}</div>
+       <div class="material-labels"><span>${mat1}</span><span>${mat2}</span><span>${mat3}</span><span>${mat4}</span></div>
+     </div>
+   </div>
+ </article>`}).join('');
  grid.querySelectorAll('.board-card').forEach(card=>{card.addEventListener('click',()=>openBoard(+card.dataset.board));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ') {e.preventDefault();openBoard(+card.dataset.board)}})});
  grid.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 }
 function openBoard(i){
  const b=boards[i]; const modal=document.querySelector('#boardModal');if(!modal)return;
  modal.querySelector('.modal-title').textContent=b[0];modal.querySelector('.modal-desc').textContent=b[1];
- modal.querySelector('.modal-visual').innerHTML=`<img src="${boardImage(b[3])}" alt="${b[0]} primary material sample board"><img src="${boardImage(b[4])}" alt="${b[0]} supporting material sample board">`;
- modal.querySelector('.modal-palette').innerHTML=b[2].map((x,j)=>`<div class="material"><span style="display:block;width:100%;height:34px;background:${x};margin-bottom:9px"></span><strong>${['Base','Secondary','Depth','Accent'][j]}</strong><span>${x.toUpperCase()}</span></div>`).join('');
- modal.querySelector('.modal-materials').innerHTML=['Primary material','Surface / finish','Furniture character','Lighting language','Textile direction','Architectural detail'].map((x,j)=>`<div class="material"><strong>${x}</strong><span>${[b[5],'Tactile, low-sheen and layered','Soft-edged, tailored silhouettes','Warm ambient pools','Natural, textural upholstery','Quietly graphic detailing'][j]}</span></div>`).join('');
+ modal.querySelector('.modal-visual').innerHTML=`<div class="modal-photo-wrap"><img src="${boardImage(b[3])}" alt="${b[0]} photographed material sample composition" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span>ARMANI / MATERIAL STUDY</span></div>`;
+ modal.querySelector('.modal-palette').innerHTML=b[2].map((x,j)=>`<div class="material"><span style="display:block;width:100%;height:42px;background:${x};margin-bottom:9px"></span><strong>${['Base','Secondary','Depth','Accent'][j]}</strong><span>${x.toUpperCase()}</span></div>`).join('');
+ modal.querySelector('.modal-materials').innerHTML=[b[4],b[5],b[6],b[7]].map((x,j)=>`<div class="material"><strong>${['Timber','Stone / surface','Textile / metal','Accent finish'][j]}</strong><span>${x}</span></div>`).join('');
  modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
 }
 function closeBoard(){const m=document.querySelector('#boardModal');if(!m)return;m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.style.overflow=''}
