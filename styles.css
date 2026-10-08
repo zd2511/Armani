@@ -59,3 +59,24 @@
 .modal-photo-wrap>span{position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,.92);padding:8px 10px;font-size:8px;letter-spacing:.16em;color:#514b42}
 @media(max-width:900px){.boards-grid{grid-template-columns:repeat(2,1fr)}.board-photo-wrap{height:300px}}
 @media(max-width:560px){.boards-grid{grid-template-columns:1fr}.board-photo-wrap{height:350px}.modal-photo-wrap,.modal-photo-wrap img{min-height:340px;height:340px}}
+/* Mood board refinement: one image per board, editorial material-study presentation. */
+.photographic-board .physical-board{background:#ece8df;padding:0;box-shadow:0 18px 45px rgba(0,0,0,.07)}
+.photographic-board .board-photo-wrap{height:390px;position:relative;overflow:hidden;background:#d9d4ca}
+.photographic-board .board-photo{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.photographic-board:hover .board-photo{transform:scale(1.035)}
+.photographic-board .board-stamp{position:absolute;left:16px;bottom:15px;background:rgba(255,255,255,.9);padding:8px 10px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#302d28}
+.photographic-board .board-paper{padding:20px 18px 18px;background:#f5f1e8}
+.photographic-board .board-paper-top{display:flex;justify-content:space-between;gap:12px;font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:#81786d}
+.photographic-board .board-paper h3{margin:12px 0 7px;font-family:var(--serif);font-size:30px;font-weight:500}
+.photographic-board .board-paper p{font-size:12px;line-height:1.6;color:var(--gray);margin:0;min-height:58px}
+.photographic-board .swatch-row{display:flex;gap:5px;margin-top:16px}
+.photographic-board .swatch-row span{height:24px;flex:1;border:1px solid rgba(0,0,0,.08)}
+.photographic-board .material-labels{display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;margin-top:13px}
+.photographic-board .material-labels span{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:#736b61}
+.modal-board{grid-template-columns:1fr .55fr}
+.modal-board .visual{display:block;padding:0;background:#e8e5dc}
+.modal-photo-wrap{height:100%;min-height:500px;position:relative;overflow:hidden}
+.modal-photo-wrap img{width:100%;height:100%;min-height:500px;object-fit:cover;display:block}
+.modal-photo-wrap>span{position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,.92);padding:9px 11px;font-size:8px;letter-spacing:.14em;text-transform:uppercase}
+@media(max-width:900px){.modal-board{grid-template-columns:1fr}.modal-photo-wrap,.modal-photo-wrap img{min-height:380px;height:380px}}
+@media(max-width:560px){.photographic-board .board-photo-wrap{height:350px}.modal-photo-wrap,.modal-photo-wrap img{min-height:300px;height:300px}}
