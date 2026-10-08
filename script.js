@@ -1,4 +1,4 @@
-const A='/assets/';
+const A='assets/';
 const img=(n)=>A+n;
 
 // Header / mobile navigation
@@ -52,7 +52,7 @@ const boards=[
 const cleanRefs=[2,3,4,5,6,8,9,12]; const boardImages=n=>[img(`IMG-20261007-WA${String(cleanRefs[n%cleanRefs.length]).padStart(4,'0')}.jpg`)];
 function renderBoards(){
  const grid=document.querySelector('#boardsGrid');if(!grid)return;
- grid.innerHTML=boards.map((b,i)=>{const [no,title,desc,pal,a,c,mat]=b;return `<article class="board-card reveal delay-${(i%3)+1}" tabindex="0" data-board="${i}"><div class="board-art"><img class="a" src="${boardImages(a)[0]}" alt="${title} interior design reference" loading="lazy"><img class="b" src="${boardImages(c)[0]}" alt="${title} material reference" loading="lazy"><div class="swatch-stack">${pal.slice(0,3).map((x,j)=>`<span style="background:${x}"></span>`).join('')}</div></div><div class="board-meta"><div class="eyebrow">Concept Board ${no}</div><h3>${title}</h3><p>${desc}</p><div class="board-palette">${pal.map(x=>`<span style="background:${x}"></span>`).join('')}</div></div></article>`}).join('');
+ grid.innerHTML=boards.map((b,i)=>{const [no,title,desc,pal,a,c,mat]=b;return `<article class="board-card reveal delay-${(i%3)+1}" tabindex="0" data-board="${i}"><div class="board-art"><img class="a" src="${boardImages(a)[0]}" alt="${title} interior design reference" loading="lazy"><img class="b" src="${boardImages(c)[0]}" alt="${title} material reference" loading="lazy"><div class="swatch-stack">${pal.slice(0,3).map((x,j)=>`<span style="background:${x}"></span>`).join('')}</div></div><div class="board-meta"><div class="eyebrow">Interior Direction</div><h3>${title}</h3><p>${desc}</p><div class="board-palette">${pal.map(x=>`<span style="background:${x}"></span>`).join('')}</div></div></article>`}).join('');
  grid.querySelectorAll('.board-card').forEach(card=>{card.addEventListener('click',()=>openBoard(+card.dataset.board));card.addEventListener('keydown',e=>{if(e.key==='Enter')openBoard(+card.dataset.board)})});
  grid.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 }
