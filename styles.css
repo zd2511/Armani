@@ -120,3 +120,49 @@
 .modal-palette-swatches{display:flex;gap:5px;margin-top:14px;height:38px}
 .modal-palette-swatches .palette-swatch{flex:1;width:auto;height:38px;border-radius:0;border:1px solid rgba(0,0,0,.09);box-shadow:none}
 @media(max-width:620px){.photographic-board .palette-swatches{height:26px}.photographic-board .palette-swatch{height:26px}.modal-palette-swatches,.modal-palette-swatches .palette-swatch{height:32px}}
+
+/* Armani interaction refinement — richer motion without changing the existing visual system. */
+@media (hover:hover) and (pointer:fine){
+  .site-header .brand img{transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .35s ease}
+  .site-header .brand:hover img{transform:rotate(-3deg) scale(1.05);filter:drop-shadow(0 6px 12px rgba(199,161,90,.18))}
+  .nav-links a{transition:color .3s ease,transform .3s ease}
+  .nav-links a:hover{color:var(--gold);transform:translateY(-1px)}
+  .nav-cta{position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,background .3s ease!important}
+  .nav-cta:before,.btn:before{content:'';position:absolute;top:0;bottom:0;left:-120%;width:70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .7s ease;pointer-events:none}
+  .nav-cta:hover,.btn:hover{transform:translateY(-3px)!important;box-shadow:0 14px 30px rgba(0,0,0,.13)}
+  .nav-cta:hover:before,.btn:hover:before{left:140%}
+  .image-frame:after,.board-single-image:after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.12) 48%,transparent 62%);transform:translateX(-120%);transition:transform .9s ease;pointer-events:none;z-index:3}
+  .image-frame:hover:after,.board-single-image:hover:after{transform:translateX(120%)}
+  .service-card{position:relative;overflow:hidden;transform:translateZ(0);transition:transform .45s cubic-bezier(.2,.8,.2,1),background .35s ease,box-shadow .45s ease}
+  .service-card:after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
+  .service-card:hover{transform:translateY(-7px);box-shadow:0 20px 42px rgba(0,0,0,.08);z-index:2}
+  .service-card:hover:after{transform:scaleX(1)}
+  .service-card h3,.service-card .arrow{transition:transform .4s ease,color .3s ease}
+  .service-card:hover h3{transform:translateX(5px)}
+  .service-card:hover .arrow{transform:translateX(7px)}
+  .portfolio-card{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s ease}
+  .portfolio-card:hover{transform:translateY(-7px);box-shadow:0 24px 48px rgba(0,0,0,.12);z-index:2}
+  .portfolio-card .image-frame img{transition:transform 1s cubic-bezier(.2,.8,.2,1),filter .6s ease}
+  .portfolio-card:hover .image-frame img{transform:scale(1.055);filter:saturate(1)}
+  .portfolio-overlay{transition:transform .45s cubic-bezier(.2,.8,.2,1),padding .45s ease}
+  .portfolio-card:hover .portfolio-overlay{padding-bottom:32px}
+  .contact-link{transition:transform .35s ease,border-color .35s ease}
+  .contact-link:hover{transform:translateX(7px);border-color:var(--gold)}
+  .contact-link .icon{transition:transform .35s ease,background .35s ease,color .35s ease}
+  .contact-link:hover .icon{transform:rotate(5deg) scale(1.06);background:var(--gold);color:var(--ink)}
+  .filter{transition:transform .3s ease,background .25s ease,border-color .25s ease,color .25s ease}
+  .filter:hover{transform:translateY(-2px)}
+  .footer-links a{transition:color .3s ease,transform .3s ease}
+  .footer-links a:hover{transform:translateX(5px)}
+  .page-hero-image{transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+  .page-hero-image:hover{transform:translateY(-4px)}
+}
+
+/* Subtle ambient motion used only where it strengthens the existing cinematic feel. */
+.hero-media img{animation:heroBreath 12s ease-in-out infinite alternate}
+@keyframes heroBreath{from{transform:scale(1.015)}to{transform:scale(1.045)}}
+.hero-content .gold{display:inline-block;animation:goldFloat 4s ease-in-out infinite}
+@keyframes goldFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+.reveal.in{animation:revealSettle .75s cubic-bezier(.2,.8,.2,1) both}
+@keyframes revealSettle{from{filter:blur(2px)}to{filter:blur(0)}}
+@media(prefers-reduced-motion:reduce){.hero-media img,.hero-content .gold,.reveal.in{animation:none!important}}

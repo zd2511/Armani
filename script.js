@@ -75,3 +75,40 @@ document.querySelector('#boardModal')?.addEventListener('click',e=>{if(e.target.
 // Contact form: no fake backend. Opens a prefilled WhatsApp message as an explicit client-side handoff.
 const form=document.querySelector('#contactForm');
 form?.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(form);const msg=`Hello Armani Interiors,\n\nName: ${d.get('name')}\nEmail: ${d.get('email')}\nPhone: ${d.get('phone')}\nService: ${d.get('service')}\nMessage: ${d.get('message')}`;window.open('https://wa.me/27633141801?text='+encodeURIComponent(msg),'_blank','noopener');document.querySelector('.form-status').textContent='Your enquiry has been prepared for WhatsApp. Please review it before sending.';});
+
+// Micro-interactions: subtle pointer tilt on desktop cards, with no layout changes.
+if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  document.querySelectorAll('.portfolio-card, .service-card, .board-card').forEach(card => {
+    let raf = 0;
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        card.style.transform = `perspective(900px) rotateX(${(-y * 2.2).toFixed(2)}deg) rotateY(${(x * 2.2).toFixed(2)}deg) translateY(-5px)`;
+      });
+    });
+    card.addEventListener('pointerleave', () => {
+      cancelAnimationFrame(raf);
+      card.style.transform = '';
+    });
+  });
+}
+
+// Gentle section-heading drift as the user scrolls through the page.
+const motionHeadings = document.querySelectorAll('.section-head .display, .boards-intro h2');
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && motionHeadings.length) {
+  const headingObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.animate(
+          [{transform:'translateY(10px)',opacity:.65},{transform:'translateY(0)',opacity:1}],
+          {duration:800,easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'}
+        );
+        headingObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.35});
+  motionHeadings.forEach(el => headingObserver.observe(el));
+}
