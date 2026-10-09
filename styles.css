@@ -262,3 +262,59 @@
   .detail-row h3 { font-size: clamp(27px, 7vw, 32px); line-height: 1.18; overflow-wrap: anywhere; }
   .detail-row p { max-width: none; width: 100%; font-size: 15px; line-height: 1.7; overflow-wrap: break-word; word-break: normal; }
 }
+
+
+/* Robust mobile layout correction for About > Design Language. */
+@media screen and (max-width: 600px) {
+  .detail-list {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .detail-list .detail-row {
+    display: block !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 20px 0 !important;
+    overflow: visible !important;
+  }
+  .detail-list .detail-row > div,
+  .detail-list .detail-row h3,
+  .detail-list .detail-row p {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+  .detail-list .detail-row h3 {
+    font-size: clamp(25px, 7vw, 31px) !important;
+    line-height: 1.2 !important;
+    margin: 0 0 8px !important;
+  }
+  .detail-list .detail-row p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    margin: 0 !important;
+  }
+  .detail-list .detail-row::before,
+  .detail-list .detail-row::after { max-width: 100%; }
+}
+
+/* Keep the copyright notice readable and visible in every page footer on phones. */
+@media screen and (max-width: 600px) {
+  .footer-bottom { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; }
+  .footer-bottom span { max-width:100%; white-space:normal; overflow-wrap:anywhere; }
+}
