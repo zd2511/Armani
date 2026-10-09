@@ -252,3 +252,14 @@
   .patio-inset{width:52%}
   .service-image-inset,.portfolio-image-inset{width:42%;right:10px;bottom:10px}
 }
+
+
+/* Standalone portfolio detail gallery: no images layered over other images. */
+.portfolio-details-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.portfolio-detail-card{min-width:0;background:#fff;border:1px solid var(--line,#dedbd3);overflow:hidden}
+.portfolio-detail-card img{display:block;width:100%;height:260px;object-fit:cover;transition:transform .7s ease}
+.portfolio-detail-card:hover img{transform:scale(1.035)}
+.portfolio-detail-card div{padding:20px 22px 23px}
+.portfolio-detail-card small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.portfolio-detail-card h3{font-family:var(--serif);font-size:27px;font-weight:400;margin:8px 0 0}
+@media(max-width:700px){.portfolio-details-grid{grid-template-columns:1fr}.portfolio-detail-card img{height:260px}}
