@@ -207,3 +207,48 @@
 .section,.section-sm,.home-gallery-section,.cta-band{animation:sectionAppear .9s ease both;}
 @keyframes sectionAppear{from{opacity:.72}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.section,.section-sm,.home-gallery-section,.cta-band{animation:none!important}}
+
+/* Coastal visual-content enhancement — additive only; existing geometry and components remain unchanged. */
+.coastal-inset{
+  position:absolute;
+  z-index:3;
+  width:clamp(145px,23%,260px);
+  aspect-ratio:1.38;
+  right:18px;
+  top:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 14px 34px rgba(0,0,0,.24);
+  background:#fff;
+  transform:translateY(0);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s ease;
+}
+.coastal-inset img{display:block;width:100%!important;height:100%!important;min-height:0!important;object-fit:cover;transition:transform .7s ease}
+.coastal-inset span{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:24px 10px 8px;
+  color:#fff;font-size:8px;letter-spacing:.12em;text-transform:uppercase;
+  background:linear-gradient(transparent,rgba(0,0,0,.72));
+}
+.coastal-main:hover .coastal-inset,.coastal-side:hover .coastal-inset{transform:translateY(-4px);box-shadow:0 20px 42px rgba(0,0,0,.3)}
+.coastal-main:hover .coastal-inset img,.coastal-side:hover .coastal-inset img{transform:scale(1.045)}
+.patio-inset{width:clamp(180px,30%,330px);aspect-ratio:1.5;top:20px;right:20px}
+.service-image-inset,.portfolio-image-inset{
+  position:absolute;z-index:3;right:18px;bottom:18px;
+  width:clamp(150px,25%,270px);aspect-ratio:1.38;overflow:hidden;
+  border:1px solid rgba(255,255,255,.8);box-shadow:0 14px 34px rgba(0,0,0,.22);
+  background:#fff;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s ease;
+}
+.service-image-inset img,.portfolio-image-inset img{width:100%!important;height:100%!important;object-fit:cover;display:block;transition:transform .7s ease}
+.service-image-inset span,.portfolio-image-inset span{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 9px 7px;
+  color:#fff;font-size:8px;letter-spacing:.12em;text-transform:uppercase;
+  background:linear-gradient(transparent,rgba(0,0,0,.72));
+}
+.service-image-inset:hover,.portfolio-image-inset:hover{transform:translateY(-5px);box-shadow:0 20px 42px rgba(0,0,0,.28)}
+.service-image-inset:hover img,.portfolio-image-inset:hover img{transform:scale(1.05)}
+@media(max-width:560px){
+  .coastal-inset{width:42%;right:10px;top:10px}
+  .patio-inset{width:52%}
+  .service-image-inset,.portfolio-image-inset{width:42%;right:10px;bottom:10px}
+}
