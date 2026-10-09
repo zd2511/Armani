@@ -252,3 +252,13 @@
   .patio-inset{width:52%}
   .service-image-inset,.portfolio-image-inset{width:42%;right:10px;bottom:10px}
 }
+
+
+/* About page: mobile readability fix for Design Language detail rows. */
+@media (max-width: 560px) {
+  .detail-list { grid-template-columns: minmax(0, 1fr); width: 100%; min-width: 0; }
+  .detail-row { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 22px 0; min-width: 0; }
+  .detail-row > div { min-width: 0; width: 100%; }
+  .detail-row h3 { font-size: clamp(27px, 7vw, 32px); line-height: 1.18; overflow-wrap: anywhere; }
+  .detail-row p { max-width: none; width: 100%; font-size: 15px; line-height: 1.7; overflow-wrap: break-word; word-break: normal; }
+}
